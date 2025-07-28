@@ -1,0 +1,6 @@
+Commit 1: Hello
+Commit 2: Hi there
+Commit 3: Greetings
+Commit 4: Welcome
+Commit 5: Goodbye
+Commit 6: How are you?
