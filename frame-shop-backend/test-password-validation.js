@@ -1,3 +1,4 @@
+// Comprehensive password security testing for MediConnect platform
 const passwordUtils = require('./utils/passwordUtils');
 
 // Test password validation
