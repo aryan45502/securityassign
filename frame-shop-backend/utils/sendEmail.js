@@ -1,4 +1,5 @@
 
+// Secure email delivery with validation and error handling
 const { Resend } = require("resend");
 
 const sendEmail = async (to, subject, html) => {
