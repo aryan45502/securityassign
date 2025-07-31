@@ -1,3 +1,4 @@
+// Secure webhook handling with signature verification and fraud prevention
 const Stripe = require("stripe");
 
 // Initialize Stripe only if the secret key is available
