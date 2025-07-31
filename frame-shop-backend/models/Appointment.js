@@ -1,3 +1,4 @@
+// Medical appointment scheduling model with consultation tracking
 const mongoose = require("mongoose");
 
 const appointmentSchema = new mongoose.Schema({
