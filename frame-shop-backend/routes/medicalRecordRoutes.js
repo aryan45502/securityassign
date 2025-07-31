@@ -1,3 +1,4 @@
+// HIPAA-compliant medical records routes with strict access control
 const express = require("express");
 const router = express.Router();
 const medicalRecordController = require("../controllers/medicalRecordController");
