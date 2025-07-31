@@ -1,3 +1,4 @@
+// Healthcare provider routes with role-based access control
 const express = require("express");
 const router = express.Router();
 const doctorController = require("../controllers/doctorController");
