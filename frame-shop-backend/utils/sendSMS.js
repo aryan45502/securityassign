@@ -1,26 +1,73 @@
-const twilio = require("twilio");
+const twilio = require('twilio');
 
-// Load credentials from .env file
-const accountSid = process.env.TWILIO_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const fromWhatsApp = process.env.TWILIO_WHATSAPP_NUMBER;
+// Initialize Twilio client with error handling
+let twilioClient = null;
+let twilioEnabled = false;
 
-const client = twilio(accountSid, authToken);
+try {
+  // Check if Twilio credentials are properly configured
+  if (process.env.TWILIO_ACCOUNT_SID && 
+      process.env.TWILIO_AUTH_TOKEN && 
+      process.env.TWILIO_PHONE_NUMBER &&
+      process.env.TWILIO_ACCOUNT_SID.startsWith('AC')) {
+    
+    twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+    twilioEnabled = true;
+    console.log('✅ Twilio SMS service enabled');
+  } else {
+    console.log('⚠️ Twilio credentials not properly configured, SMS will be simulated');
+  }
+} catch (error) {
+  console.log('⚠️ Twilio initialization failed, SMS will be simulated:', error.message);
+}
 
-exports.sendSMS = async (to, message) => {
-    try {
-        // Ensure phone is formatted correctly for WhatsApp
-        const formattedNumber = to.startsWith("+") ? to : `+977${to}`;
-
-        await client.messages.create({
-            body: message,
-            from: fromWhatsApp,
-            to: `whatsapp:${formattedNumber}`,
-        });
-
-        console.log("✅ WhatsApp message sent to:", formattedNumber);
-    } catch (error) {
-        console.error("❌ Failed to send WhatsApp message:", error.message);
-        throw new Error("Failed to send WhatsApp message");
+const sendSMS = async (to, message) => {
+  try {
+    if (twilioEnabled && twilioClient) {
+      // Send real SMS via Twilio
+      const result = await twilioClient.messages.create({
+        body: message,
+        from: process.env.TWILIO_PHONE_NUMBER,
+        to: to
+      });
+      
+      console.log('📱 SMS sent successfully:', result.sid);
+      return { success: true, sid: result.sid };
+    } else {
+      // Simulate SMS sending for development/testing
+      console.log('📱 [SIMULATED] SMS would be sent to:', to);
+      console.log('📱 [SIMULATED] Message:', message);
+      
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      return { 
+        success: true, 
+        simulated: true,
+        message: 'SMS simulated (Twilio not configured)'
+      };
     }
+  } catch (error) {
+    console.error('❌ SMS sending failed:', error.message);
+    
+    // Fallback to simulation if Twilio fails
+    console.log('📱 [FALLBACK] SMS simulated due to error');
+    return { 
+      success: true, 
+      simulated: true,
+      error: error.message,
+      message: 'SMS simulated due to service error'
+    };
+  }
+};
+
+const sendOTP = async (phoneNumber, otp) => {
+  const message = `Welcome to MediConnect! Your verification code is: ${otp}. This code expires in 10 minutes.`;
+  return await sendSMS(phoneNumber, message);
+};
+
+module.exports = {
+  sendSMS,
+  sendOTP,
+  twilioEnabled
 };

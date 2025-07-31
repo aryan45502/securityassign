@@ -1,115 +1,176 @@
 const mongoose = require('mongoose');
-const Frame = require('./models/Frame');
+const Doctor = require('./models/Doctor');
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/frame-shop', {
+mongoose.connect('mongodb://localhost:27017/mediconnect', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const sampleFrames = [
+const sampleDoctors = [
   {
-    name: "Everest Solid Wood Frame",
-    material: "Wood",
-    color: "Brown",
-    pricePerInch: 15,
-    price: 3840,
-    category: "Wooden",
-    description: "Premium solid wood frame with elegant finish. Perfect for showcasing your precious memories.",
-    imageUrl: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&h=400&fit=crop"
+    name: "Dr. Sarah Johnson",
+    specialty: "Cardiology",
+    qualification: "MD, FACC",
+    experience: 15,
+    consultationFee: 2500,
+    rating: 4.9,
+    about: "Expert cardiologist with 15+ years of experience in cardiovascular medicine and interventional cardiology.",
+    hospital: "Tribhuvan University Teaching Hospital",
+    city: "Kathmandu",
+    availability: {
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: false,
+      sunday: false
+    },
+    timeSlots: [
+      { startTime: "09:00", endTime: "17:00" }
+    ]
   },
   {
-    name: "Modern Metal Frame",
-    material: "Metal",
-    color: "Silver",
-    pricePerInch: 12,
-    price: 2880,
-    category: "Metal",
-    description: "Sleek modern metal frame with contemporary design. Ideal for modern interiors.",
-    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop"
+    name: "Dr. Michael Chen",
+    specialty: "Neurology",
+    qualification: "MD, PhD",
+    experience: 12,
+    consultationFee: 3000,
+    rating: 4.8,
+    about: "Neurologist specializing in brain disorders, stroke care, and neurodegenerative diseases.",
+    hospital: "Nepal Medical College",
+    city: "Kathmandu",
+    availability: {
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: true,
+      sunday: false
+    },
+    timeSlots: [
+      { startTime: "10:00", endTime: "16:00" }
+    ]
   },
   {
-    name: "Minimalist White Frame",
-    material: "Plastic",
-    color: "White",
-    pricePerInch: 8,
-    price: 1920,
-    category: "Modern",
-    description: "Clean minimalist white frame for a fresh, modern look.",
-    imageUrl: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&h=400&fit=crop"
+    name: "Dr. Priya Sharma",
+    specialty: "Pediatrics",
+    qualification: "MBBS, MD",
+    experience: 8,
+    consultationFee: 1800,
+    rating: 4.7,
+    about: "Dedicated pediatrician providing comprehensive care for children from newborns to adolescents.",
+    hospital: "Kanti Children's Hospital",
+    city: "Kathmandu",
+    availability: {
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: true,
+      sunday: true
+    },
+    timeSlots: [
+      { startTime: "08:00", endTime: "18:00" }
+    ]
   },
   {
-    name: "Classic Gallery Frame",
-    material: "Wood",
-    color: "Black",
-    pricePerInch: 18,
-    price: 4320,
-    category: "Classic",
-    description: "Timeless classic gallery frame with sophisticated black finish.",
-    imageUrl: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=600&h=400&fit=crop"
+    name: "Dr. Rajesh Gupta",
+    specialty: "Orthopedics",
+    qualification: "MS Orthopedics",
+    experience: 20,
+    consultationFee: 2200,
+    rating: 4.6,
+    about: "Orthopedic surgeon specializing in joint replacement, sports injuries, and bone disorders.",
+    hospital: "Bir Hospital",
+    city: "Kathmandu",
+    availability: {
+      monday: true,
+      tuesday: true,
+      wednesday: false,
+      thursday: true,
+      friday: true,
+      saturday: true,
+      sunday: false
+    },
+    timeSlots: [
+      { startTime: "09:00", endTime: "15:00" }
+    ]
   },
   {
-    name: "Premium Gold Frame",
-    material: "Wood",
-    color: "Gold",
-    pricePerInch: 25,
-    price: 6000,
-    category: "Premium",
-    description: "Luxurious gold-finished frame for the most elegant displays.",
-    imageUrl: "https://images.unsplash.com/photo-1608232034071-c604ddc8470a?w=600&h=400&fit=crop"
+    name: "Dr. Lisa Wong",
+    specialty: "Dermatology",
+    qualification: "MD Dermatology",
+    experience: 10,
+    consultationFee: 2000,
+    rating: 4.8,
+    about: "Dermatologist expert in skin conditions, cosmetic procedures, and dermatologic surgery.",
+    hospital: "Civil Service Hospital",
+    city: "Kathmandu",
+    availability: {
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: false,
+      sunday: false
+    },
+    timeSlots: [
+      { startTime: "10:00", endTime: "16:00" }
+    ]
   },
   {
-    name: "Vintage Brass Frame",
-    material: "Metal",
-    color: "Brass",
-    pricePerInch: 20,
-    price: 4800,
-    category: "Vintage",
-    description: "Beautiful vintage brass frame with antique finish.",
-    imageUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop"
-  },
-  {
-    name: "Contemporary Silver Frame",
-    material: "Metal",
-    color: "Silver",
-    pricePerInch: 16,
-    price: 3840,
-    category: "Contemporary",
-    description: "Contemporary silver frame with modern aesthetics.",
-    imageUrl: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&h=400&fit=crop"
-  },
-  {
-    name: "Natural Oak Frame",
-    material: "Wood",
-    color: "Oak",
-    pricePerInch: 14,
-    price: 3360,
-    category: "Natural",
-    description: "Natural oak wood frame with beautiful grain patterns.",
-    imageUrl: "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=600&h=400&fit=crop"
+    name: "Dr. Ramesh Patel",
+    specialty: "General Medicine",
+    qualification: "MBBS, MD",
+    experience: 18,
+    consultationFee: 1500,
+    rating: 4.5,
+    about: "General physician providing primary healthcare and managing common medical conditions.",
+    hospital: "Patan Hospital",
+    city: "Lalitpur",
+    availability: {
+      monday: true,
+      tuesday: true,
+      wednesday: true,
+      thursday: true,
+      friday: true,
+      saturday: true,
+      sunday: true
+    },
+    timeSlots: [
+      { startTime: "08:00", endTime: "20:00" }
+    ]
   }
 ];
 
-async function seedFrames() {
+const seedDoctors = async () => {
   try {
-    // Clear existing frames
-    await Frame.deleteMany({});
-    console.log('Cleared existing frames');
+    // Clear existing doctors
+    await Doctor.deleteMany({});
+    console.log('🗑️ Cleared existing doctors');
 
-    // Insert new frames
-    const frames = await Frame.insertMany(sampleFrames);
-    console.log(`Successfully seeded ${frames.length} frames with proper prices`);
-
-    // Log the frames with their prices
-    frames.forEach(frame => {
-      console.log(`${frame.name}: ₹${frame.price} (₹${frame.pricePerInch}/inch)`);
+    // Insert sample doctors
+    await Doctor.insertMany(sampleDoctors);
+    console.log('✅ Sample doctors added successfully!');
+    
+    console.log(`📊 Total doctors in database: ${sampleDoctors.length}`);
+    
+    // Display summary
+    console.log('\n🏥 MediConnect Doctor Directory:');
+    sampleDoctors.forEach((doctor, index) => {
+      console.log(`${index + 1}. Dr. ${doctor.name} - ${doctor.specialty} (रू ${doctor.consultationFee})`);
     });
-
-    mongoose.connection.close();
+    
   } catch (error) {
-    console.error('Error seeding frames:', error);
+    console.error('❌ Error seeding doctors:', error);
+  } finally {
     mongoose.connection.close();
   }
-}
+};
 
-seedFrames(); 
+seedDoctors(); 

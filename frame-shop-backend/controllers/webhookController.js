@@ -6,7 +6,7 @@ if (process.env.STRIPE_SECRET_KEY) {
   stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 }
 
-const Order = require("../models/Order");
+const MedicalRecord = require("../models/MedicalRecord");
 const User = require("../models/User");
 const sendEmail = require("../utils/sendEmail");
 
