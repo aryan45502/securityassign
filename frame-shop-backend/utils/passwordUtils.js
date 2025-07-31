@@ -1,3 +1,4 @@
+// Enterprise-grade password security with strength assessment and history tracking
 const bcrypt = require('bcryptjs');
 
 const passwordUtils = {
