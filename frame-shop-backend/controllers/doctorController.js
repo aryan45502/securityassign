@@ -1,3 +1,4 @@
+// Healthcare provider management with secure profile handling
 const Doctor = require("../models/Doctor");
 
 exports.createDoctor = async (req, res) => {
