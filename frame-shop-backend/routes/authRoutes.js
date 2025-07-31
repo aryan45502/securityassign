@@ -1,3 +1,4 @@
+// Secure authentication routes with comprehensive security middleware
 const express = require("express");
 const { 
   register, 
