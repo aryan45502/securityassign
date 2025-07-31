@@ -1,7 +1,7 @@
 {
   "name": "mediconnect-backend",
   "version": "1.0.0",
-  "description": "Backend for MediConnect Healthcare Appointment Platform",
+  "description": "Backend for MediConnect Healthcare Appointment Platform with Enhanced Security",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
