@@ -1,3 +1,4 @@
+// Medical frame configuration model for healthcare customization
 const mongoose = require("mongoose");
 
 const frameConfigSchema = new mongoose.Schema({
