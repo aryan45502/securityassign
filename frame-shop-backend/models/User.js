@@ -1,3 +1,4 @@
+// Enhanced User model with comprehensive security features
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
