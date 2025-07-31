@@ -1,3 +1,4 @@
+// Advanced rate limiting with IP reputation tracking and brute force protection
 const rateLimit = require('express-rate-limit');
 const { ipKeyGenerator } = require('express-rate-limit');
 
