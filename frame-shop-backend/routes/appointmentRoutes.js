@@ -1,3 +1,4 @@
+// Medical appointment routes with patient-doctor access control
 const express = require("express");
 const router = express.Router();
 const appointmentController = require("../controllers/appointmentController");
