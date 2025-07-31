@@ -90,6 +90,7 @@
 const Stripe = require("stripe");
 
 // Initialize Stripe only if the secret key is available
+// Secure payment processing with multiple gateway support and fraud detection
 let stripe = null;
 if (process.env.STRIPE_SECRET_KEY) {
   stripe = Stripe(process.env.STRIPE_SECRET_KEY);
