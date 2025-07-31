@@ -1,3 +1,4 @@
+// Multi-factor authentication utilities with TOTP, SMS, and backup codes
 const crypto = require('crypto');
 const speakeasy = require('speakeasy');
 const QRCode = require('qrcode');
