@@ -1,4 +1,5 @@
 
+// Enhanced security configuration for MediConnect Healthcare Platform
 require("dotenv").config({ path: "./config.env" });
 
 const express = require("express");
