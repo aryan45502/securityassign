@@ -1,3 +1,4 @@
+// HIPAA-compliant medical records with access control and audit logging
 const MedicalRecord = require("../models/MedicalRecord");
 const Appointment = require("../models/Appointment");
 
