@@ -1,3 +1,4 @@
+// Secure MongoDB connection with health monitoring and error handling
 const mongoose = require("mongoose");
 require("dotenv").config({ path: "./config.env" });
 
