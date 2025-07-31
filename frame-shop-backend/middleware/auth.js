@@ -29,6 +29,7 @@
 // module.exports = { protect, admin };
 
 
+// Secure JWT authentication middleware with role-based access control
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
