@@ -1,3 +1,4 @@
+// Secure cloud storage configuration for medical file uploads
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
