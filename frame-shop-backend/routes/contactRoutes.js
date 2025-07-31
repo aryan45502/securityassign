@@ -1,3 +1,4 @@
+// Secure contact form routes with input validation and admin access
 const express = require('express');
 const router = express.Router();
 const { createMessage, getAllMessages } = require('../controllers/contactController');
