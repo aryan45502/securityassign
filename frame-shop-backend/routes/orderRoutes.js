@@ -1,3 +1,4 @@
+// Order management routes with password history and security validation
 const express = require("express");
 const router = express.Router();
 const { protect } = require("../middleware/auth");
