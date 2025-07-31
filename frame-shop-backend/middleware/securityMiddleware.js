@@ -1,3 +1,4 @@
+// Enterprise-grade security middleware with XSS protection and NoSQL injection prevention
 const xss = require('xss');
 const { body, validationResult } = require('express-validator');
 
