@@ -1,3 +1,4 @@
+// Enhanced authentication controller with comprehensive security features
 const User = require('../models/User');
 const AuditLog = require('../models/AuditLog');
 const passwordUtils = require('../utils/passwordUtils');
