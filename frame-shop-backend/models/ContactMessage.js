@@ -1,3 +1,4 @@
+// Secure contact form message handling with input validation
 const mongoose = require('mongoose');
 
 const contactMessageSchema = new mongoose.Schema({
