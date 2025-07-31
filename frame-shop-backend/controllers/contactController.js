@@ -1,3 +1,4 @@
+// Secure contact form handling with input validation and sanitization
 const ContactMessage = require('../models/ContactMessage');
 
 exports.createMessage = async (req, res) => {
