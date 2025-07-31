@@ -1,3 +1,4 @@
+// Secure SMS delivery with Twilio integration and fallback simulation
 const twilio = require('twilio');
 
 // Initialize Twilio client with error handling
