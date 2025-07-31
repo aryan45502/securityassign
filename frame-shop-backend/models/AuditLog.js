@@ -1,3 +1,4 @@
+// Comprehensive security audit logging for compliance and threat detection
 const mongoose = require("mongoose");
 
 const auditLogSchema = new mongoose.Schema({
