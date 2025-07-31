@@ -1,3 +1,4 @@
+// Medical appointment scheduling with conflict resolution and security
 const Appointment = require("../models/Appointment");
 const Doctor = require("../models/Doctor");
 
