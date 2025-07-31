@@ -1,4 +1,4 @@
-// CSRF Testing Script
+// Comprehensive CSRF protection testing for MediConnect security validation
 // Usage: node test-csrf.js [all|missing|invalid|valid|get]
 
 const BASE_URL = 'http://localhost:5000';
