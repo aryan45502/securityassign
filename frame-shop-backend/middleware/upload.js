@@ -1,3 +1,4 @@
+// Secure file upload middleware with cloud storage and format validation
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("../config/cloudinary");
