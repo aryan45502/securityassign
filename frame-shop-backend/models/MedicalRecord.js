@@ -1,3 +1,4 @@
+// HIPAA-compliant medical records with encryption and access control
 const mongoose = require("mongoose");
 
 const medicalRecordSchema = new mongoose.Schema({
