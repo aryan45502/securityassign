@@ -4,10 +4,7 @@ require("dotenv").config({ path: "./config.env" });
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/mediconnect", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const conn = await mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/mediconnect");
 
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
     

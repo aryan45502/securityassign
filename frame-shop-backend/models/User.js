@@ -165,7 +165,7 @@ const userSchema = new mongoose.Schema({
   // Security Preferences
   securityPreferences: {
     requireMFA: { type: Boolean, default: false },
-    sessionTimeout: { type: Number, default: 30 }, // minutes
+    sessionTimeout: { type: Number, default: 10 }, // minutes
     maxConcurrentSessions: { type: Number, default: 5 },
     notifyOnLogin: { type: Boolean, default: true },
     notifyOnPasswordChange: { type: Boolean, default: true }
